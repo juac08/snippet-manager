@@ -7,9 +7,9 @@ import axios from "axios";
 
 const CreateSnippet = ({ addSnippet,getSnippet,setAddSnippet,EditSnippet,setEditSnippet}) => {
   let initialValues = {
-    title: '',
-    description: "",
-    code: "",
+    title:'',
+    description:'',
+    code:'',
   };
   if(EditSnippet){
     initialValues ={
@@ -32,8 +32,6 @@ const CreateSnippet = ({ addSnippet,getSnippet,setAddSnippet,EditSnippet,setEdit
     setAddSnippet(false)
     getSnippet();  
         }else{
-           
-            
             await axios.put("http://localhost:5000/snippet/"+EditSnippet._id +"",values);
             setAddSnippet(false)
             getSnippet(); 

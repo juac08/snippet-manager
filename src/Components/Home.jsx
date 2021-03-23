@@ -1,38 +1,46 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useContext } from "react";
 import axios from "axios";
 import styled from "styled-components";
 import Snippet from "./Snippet";
 import Button from "@material-ui/core/Button";
 import CreateSnippet from "./CreateSnippet";
+import UserContext from "../Context/UserContext";
+import Hero from '../Components/hero.svg'
 
 const Home = () => {
   const [snippets, setSnippets] = useState([]);
-  const [loading, setLoading] = useState(false);
   const [addSnippet, setAddSnippet] = React.useState(false);
   const [EditSnippet, setEditSnippet] = React.useState();
+  const { user } = useContext(UserContext);
 
   const getSnippet = async () => {
-    setLoading(true);
     try {
       const response = await axios.get("http://localhost:5000/snippet/");
       setSnippets(response.data);
-      setLoading(false);
     } catch (error) {
       console.log(error);
     }
   };
   useEffect(() => {
+    if(!user) return;
     getSnippet();
-  }, []);
-  if (loading) {
-    return <h1>Loading....</h1>;
-  }
- 
+  }, [user]);
 
+  // =========SORTING=================
+  let sortedSnippets = [...snippets];
+  sortedSnippets = sortedSnippets.sort((a, b) => {
+    return new Date(b.createdAt) - new Date(a.createdAt);
+  });
   return (
     <>
       <div>
-        {!addSnippet && (
+        {!user && (
+          <div className='container'>
+          <h1 className='message'>Welcome to Snippet Manager</h1>
+          <img src={Hero} alt="hero"/>
+          </div>
+          )}
+        {!addSnippet && user && (
           <div className="form-control">
             <h1>Add new Snippet</h1>
             <Button
@@ -56,7 +64,10 @@ const Home = () => {
             />
             <Button
               className="btn"
-              onClick={() => setAddSnippet(false)}
+              onClick={() => {
+                setAddSnippet(false);
+                setEditSnippet(undefined);
+              }}
               variant="contained"
               color="secondary"
             >
@@ -66,7 +77,7 @@ const Home = () => {
         )}
       </div>
       <Wrapper>
-        {snippets.map((snippet) => {
+        {sortedSnippets.map((snippet) => {
           const { _id, title, code, description } = snippet;
           return (
             <div key={_id}>
@@ -74,9 +85,8 @@ const Home = () => {
                 title={title}
                 description={description}
                 code={code}
-                id={_id}
+                _id={_id}
                 getSnippet={getSnippet}
-                setLoading={setLoading}
                 setAddSnippet={setAddSnippet}
                 snippet={snippet}
                 setEditSnippet={setEditSnippet}
@@ -97,17 +107,16 @@ export default Home;
 const Wrapper = styled.section`
   display: grid;
   grid-template-columns: 1fr;
-  place-items: center;
+justify-content:center;
   background: #ffffff;
 
   div {
     text-align: center;
     padding: 1rem;
-    width: 100%;
-    height: 100%;
     line-height: 2rem;
   }
   Button {
     margin: 0.5rem;
   }
+ 
 `;

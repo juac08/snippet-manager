@@ -5,11 +5,14 @@ import axios from "axios";
 import Fade from "react-reveal/Fade";
 
 
-const Snippet = ({ title, description, code, id, getSnippet,setAddSnippet,snippet,setEditSnippet,EditSnippet}) => {
+const Snippet = ({ title, description, code, _id, getSnippet,setAddSnippet,snippet,setEditSnippet,EditSnippet}) => {
   const deleteSnippet = async () => {
     try {
-      await axios.delete("http://localhost:5000/snippet/" + id + "");
-      getSnippet();
+      if(window.confirm("Do you want to delete ?")){
+        await axios.delete("http://localhost:5000/snippet/" + _id + "");
+        getSnippet();
+      }
+     
     } catch (error) {
       console.log(error);
     }
@@ -27,8 +30,11 @@ const Snippet = ({ title, description, code, id, getSnippet,setAddSnippet,snippe
   return (
     <Wrapper>
       <div>
-        {title && <h1>{title}</h1>}
+      <div>
+      {title && <h1>{title}</h1>}
         <h5>{description}</h5>
+      </div>
+        
         <Fade left><pre>
           <code>{code}</code>
         </pre>
@@ -55,13 +61,15 @@ export default Snippet;
 //============Styled====================
 
 const Wrapper = styled.section`
-  background: #ececf8;
+  background: #f0f0f1;
   color: #161414;
   border-radius:2%;
 
+
   pre{
-    background:#d8d5fc;
+  background:whitesmoke;
   border-radius:2%;
+  text-align:center;
   }
   
 `;

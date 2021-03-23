@@ -2,8 +2,15 @@ import React from "react";
 import NavBar from "./Components/NavBar";
 import { BrowserRouter, Switch, Route } from "react-router-dom";
 import Home from "./Components/Home";
+import Login from './Components/Login';
+import Register from './Components/Register';
+import Logout from './Components/Logout'
+import UserContext from "../src/Context/UserContext";
+
 
 const Router = () => {
+  const {logout} = React.useContext(UserContext);
+
   return (
     <BrowserRouter>
       <NavBar />
@@ -12,11 +19,14 @@ const Router = () => {
           <Home />
         </Route>
         <Route exact path="/login">
-          Login
+          <Login/>
         </Route>
         <Route exact path="/register">
-          Register
+          <Register/>
         </Route>
+        {logout && 
+          <Route exact path='/logout'><Logout/></Route>
+        }
       </Switch>
     </BrowserRouter>
   );

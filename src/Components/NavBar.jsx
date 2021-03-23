@@ -1,20 +1,47 @@
-import React from "react";
+import React, { useContext } from "react";
 import styled from "styled-components";
 import { Link } from "react-router-dom";
+import UserContext from "../Context/UserContext";
+import { Button } from "@material-ui/core";
+import axios from "axios";
+import { useHistory } from "react-router";
+
 
 const NavBar = () => {
+  const { user, getUser,isLogout} = useContext(UserContext);
+  const history =useHistory();
+
+
+  const logout = async () => {
+    await axios.get("http://localhost:5000/auth/logout/");
+    await getUser();
+    history.push("/logout");
+    isLogout(true);
+  };
+
   return (
     <Wrapper>
       <ul className="nav">
         <Link to="/">
           <h1>Snippet Manger</h1>
         </Link>
-        <Link to="login">
-          <li>Log in</li>
-        </Link>
-        <Link to="/register">
-          <li>Register</li>
-        </Link>
+        {!user ? (
+          <>
+            <Link to="login">
+              <li>Log in</li>
+            </Link>
+            <Link to="/register">
+              <li>Register</li>
+            </Link>
+          </>
+        ) : (
+          <Link to="/logout">
+            <Button className="btn" color="primary" onClick={logout}>
+              Logout
+            </Button>
+            
+          </Link>
+        )}
       </ul>
     </Wrapper>
   );
@@ -32,18 +59,18 @@ const Wrapper = styled.section`
     place-items: center;
     grid-template-columns: 1fr 1fr 1fr;
     text-align: center;
-    background: #f2f0f5;
+    background: #f1b606;
     padding: 1rem;
-    font-size:1rem;
+    font-size: 1rem;
   }
   li {
     list-style: none;
-    color:#8847eb
+    color: #8847eb;
   }
-  li:hover{
-      color:#183ee7;
-      transform:scaleX(1.2) scaleY(1.2);
-      transition:all .5s linear;
+  li:hover {
+    color: #183ee7;
+    transform: scaleX(1.2) scaleY(1.2);
+    transition: all 0.5s linear;
   }
   a {
     text-decoration: none;
