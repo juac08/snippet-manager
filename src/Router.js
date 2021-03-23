@@ -10,7 +10,7 @@ import UserContext from "../src/Context/UserContext";
 
 
 const Router = () => {
-  const {logout} = React.useContext(UserContext);
+  const {logout,user} = React.useContext(UserContext);
 
   return (
     <BrowserRouter>
@@ -29,7 +29,8 @@ const Router = () => {
           <Route exact path='/logout'><Logout/></Route>
         }
       </Switch>
-      <Footer/>
+      {!user && <Footer/>
+}
     </BrowserRouter>
   );
 };
