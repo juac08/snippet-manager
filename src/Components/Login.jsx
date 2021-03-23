@@ -6,6 +6,7 @@ import Button from "@material-ui/core/Button";
 import axios from "axios";
 import { useHistory } from "react-router";
 import UserContext from "../Context/UserContext";
+import domain from "../util/domain";
 
 const LoginForm = () => {
   const history =useHistory();
@@ -21,7 +22,7 @@ const {getUser} = useContext(UserContext);
   });
 
   const onSubmit = async (values) => {
-      await axios.post('http://localhost:5000/auth/login/',values);
+      await axios.post(''+domain+'/auth/login/',values);
       history.push("/");
       await getUser();
   };

@@ -3,13 +3,14 @@ import styled from "styled-components";
 import Button from "@material-ui/core/Button";
 import axios from "axios";
 import Fade from "react-reveal/Fade";
+import domain from "../util/domain";
 
 
 const Snippet = ({ title, description, code, _id, getSnippet,setAddSnippet,snippet,setEditSnippet,EditSnippet}) => {
   const deleteSnippet = async () => {
     try {
       if(window.confirm("Do you want to delete ?")){
-        await axios.delete("http://localhost:5000/snippet/" + _id + "");
+        await axios.delete(""+domain+"/snippet/" + _id + "");
         getSnippet();
       }
      

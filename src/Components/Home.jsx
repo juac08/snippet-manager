@@ -6,6 +6,7 @@ import Button from "@material-ui/core/Button";
 import CreateSnippet from "./CreateSnippet";
 import UserContext from "../Context/UserContext";
 import Hero from '../Components/hero.svg'
+import domain from "../util/domain";
 
 const Home = () => {
   const [snippets, setSnippets] = useState([]);
@@ -15,7 +16,7 @@ const Home = () => {
 
   const getSnippet = async () => {
     try {
-      const response = await axios.get("http://localhost:5000/snippet/");
+      const response = await axios.get(""+domain+"/snippet/");
       setSnippets(response.data);
     } catch (error) {
       console.log(error);

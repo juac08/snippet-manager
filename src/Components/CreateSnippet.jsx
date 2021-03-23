@@ -4,6 +4,7 @@ import FormikControl from "./FormikControl";
 import * as Yup from "yup";
 import Button from "@material-ui/core/Button";
 import axios from "axios";
+import domain from "../util/domain";
 
 const CreateSnippet = ({ addSnippet,getSnippet,setAddSnippet,EditSnippet,setEditSnippet}) => {
   let initialValues = {
@@ -28,11 +29,11 @@ const CreateSnippet = ({ addSnippet,getSnippet,setAddSnippet,EditSnippet,setEdit
   const onSubmit = async (values,initialValues) => {
     try {
         if(!EditSnippet){
-            await axios.post("http://localhost:5000/snippet/",values);  
+            await axios.post(""+domain+"/snippet/",values);  
     setAddSnippet(false)
     getSnippet();  
         }else{
-            await axios.put("http://localhost:5000/snippet/"+EditSnippet._id +"",values);
+            await axios.put(""+domain+"/snippet/"+EditSnippet._id +"",values);
             setAddSnippet(false)
             getSnippet(); 
             setEditSnippet(undefined)

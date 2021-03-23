@@ -5,6 +5,7 @@ import UserContext from "../Context/UserContext";
 import { Button } from "@material-ui/core";
 import axios from "axios";
 import { useHistory } from "react-router";
+import domain from "../util/domain";
 
 
 const NavBar = () => {
@@ -13,7 +14,7 @@ const NavBar = () => {
 
 
   const logout = async () => {
-    await axios.get("http://localhost:5000/auth/logout/");
+    await axios.get(""+domain+"/auth/logout/");
     await getUser();
     history.push("/logout");
     isLogout(true);
