@@ -86,3 +86,37 @@ p {
 a {
     text-decoration: none;
 }
+
+.footer {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+    margin-top: 1rem;
+    width: 30%;
+    margin: 2rem auto;
+    place-items: center;
+    transition: var(--transition);
+    margin-top: 2rem;
+    border-radius: var(--radius);
+    /* Height of the footer */
+}
+
+aside {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    height: 100px;
+    background: rgb(253, 158, 6);
+}
+
+.footer a:hover {
+    color: rgb(255, 255, 255);
+}
+
+.f {
+    text-align: center;
+    margin: 0 auto;
+}
+
+li {
+    list-style: none;
+}

@@ -60,7 +60,7 @@ const Wrapper = styled.section`
     place-items: center;
     grid-template-columns: 1fr 1fr 1fr;
     text-align: center;
-    background: #f1b606;
+    background: rgb(253, 158, 6);
     padding: 1rem;
     font-size: 1rem;
   }

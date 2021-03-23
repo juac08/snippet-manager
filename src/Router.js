@@ -5,6 +5,7 @@ import Home from "./Components/Home";
 import Login from './Components/Login';
 import Register from './Components/Register';
 import Logout from './Components/Logout'
+import Footer from './Components/Footer'
 import UserContext from "../src/Context/UserContext";
 
 
@@ -28,6 +29,7 @@ const Router = () => {
           <Route exact path='/logout'><Logout/></Route>
         }
       </Switch>
+      <Footer/>
     </BrowserRouter>
   );
 };
