@@ -42,20 +42,23 @@ const Home = () => {
           </div>
           )}
         {!addSnippet && user && (
-          <div className="form-control">
+          <div className='st'>
             <h1>Add new Snippet</h1>
             <Button
               onClick={() => setAddSnippet(true)}
               variant="contained"
               color="secondary"
-              className="btn"
+           className="btn"
             >
               Add Snippet
             </Button>
           </div>
         )}
         {addSnippet && (
-          <div className="form-control">
+          <div className="login-wrapper" style={{background:'white'}}>
+          <div className='form-control'>
+          <h1 style={{textAlign:'center'}}>Add Snippet</h1>
+          <div className="underline"></div>
             <CreateSnippet
               addSnippet={addSnippet}
               getSnippet={getSnippet}
@@ -64,7 +67,7 @@ const Home = () => {
               setEditSnippet={setEditSnippet}
             />
             <Button
-              className="btn"
+              style={{width:'100%'}}
               onClick={() => {
                 setAddSnippet(false);
                 setEditSnippet(undefined);
@@ -74,6 +77,7 @@ const Home = () => {
             >
               Close
             </Button>
+            </div>
           </div>
         )}
       </div>
@@ -81,7 +85,7 @@ const Home = () => {
         {sortedSnippets.map((snippet) => {
           const { _id, title, code, description } = snippet;
           return (
-            <div key={_id}>
+            <div key={_id} className='snip'>
               <Snippet
                 title={title}
                 description={description}
@@ -109,15 +113,17 @@ const Wrapper = styled.section`
   display: grid;
   grid-template-columns: 1fr;
 justify-content:center;
-  background: #ffffff;
+background:white;
 
-  div {
+  .snip{
     text-align: center;
     padding: 1rem;
     line-height: 2rem;
   }
   Button {
     margin: 0.5rem;
+    
   }
+  
  
 `;

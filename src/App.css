@@ -12,12 +12,13 @@
 .container {
     display: flex;
     flex-direction: column;
-    justify-content: center;
-    width: 100vw;
+    height: 100vh;
+    justify-self: center;
 }
 
 body {
-    background-color: rgb(245, 245, 250);
+    background: url("./Components//bg.jpg") no-repeat center;
+    background-size: cover;
     font-family: "Roboto", sans-serif;
 }
 
@@ -26,6 +27,14 @@ body {
     text-align: center;
     font-size: 5rem;
     font-weight: bold;
+}
+
+.st {
+    display: grid;
+    grid-template-rows: 1fr 1fr;
+    place-items: center;
+    background-color: rgb(44, 38, 38);
+    color: rgb(168, 165, 165);
 }
 
 input[type="text"],
@@ -57,7 +66,7 @@ label {
     font-weight: bold;
     display: inline-flex;
     margin-right: 20px;
-    color: rgb(78, 80, 82);
+    color: rgb(241, 244, 248);
 }
 
 .btn {
@@ -70,21 +79,46 @@ label {
 }
 
 .form-control {
-    display: grid;
-    justify-content: center;
-    padding: 0.5rem;
-    border-radius: 30px;
-    background: rgb(235, 232, 232);
-    margin-top: 3rem;
+    position: relative;
+    max-width: 380px;
+    padding: 80px 40px 40px;
+    background: rgba(0, 0, 0, 0.7);
+    border-radius: 10px;
+    box-shadow: 0 15px 25px rgba(185, 183, 183, 0.5);
+}
+
+.form-control img {
+    position: absolute;
+    top: -50px;
+    left: calc(50% - 50px);
+    width: 100px;
+    background: rgba(255, 255, 255, 0.8);
+    border-radius: 50%;
+}
+
+.form-control::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 50%;
+    height: 100%;
+    background: rgba(255, 255, 255, 0.08);
+    transform: skewX(-26deg);
+    transform-origin: bottom left;
+    border-radius: 10px;
+    pointer-events: none;
 }
 
 p {
-    color: rgb(109, 103, 103);
+    color: rgb(245, 241, 241);
     font-size: 1rem;
+    margin-top: 1rem;
 }
 
 a {
     text-decoration: none;
+    color: beige;
 }
 
 .footer {
@@ -121,4 +155,22 @@ aside {
 
 li {
     list-style: none;
+}
+
+.login-wrapper {
+    height: 100vh;
+    width: 100vw;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.underline {
+    width: 5rem;
+    height: 0.25rem;
+    margin-bottom: 1.25rem;
+    background: goldenrod;
+    margin-left: auto;
+    margin-right: auto;
+    border-radius: 10px;
 }

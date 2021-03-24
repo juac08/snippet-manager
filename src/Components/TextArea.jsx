@@ -8,7 +8,7 @@ const TextArea = (props) => {
 
   return (
     <Fade left>
-      <div className="form-control">
+      <div>
         <label htmlFor={name}>{label}</label>
         <Field as="textarea" name={name} id={name} {...rest} />
         <ErrorMessage name={name} component={TextError} />

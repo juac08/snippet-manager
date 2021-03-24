@@ -7,6 +7,7 @@ import axios from "axios";
 import { useHistory } from "react-router";
 import UserContext from "../Context/UserContext";
 import domain from "../util/domain";
+import Image from '../Components/avatar.png'
 
 const LoginForm = () => {
   const history =useHistory();
@@ -27,7 +28,11 @@ const {getUser} = useContext(UserContext);
       await getUser();
   };
   return (
+    <div className='login-wrapper'>
     <div className="form-control">
+    <h1 style={{textAlign:'center'}}>Login</h1>
+    <img src={Image} alt=""/>
+    <div className="underline"></div>
       <Formik
         initialValues={initialValues}
         validationSchema={validationSchema}
@@ -62,6 +67,7 @@ const {getUser} = useContext(UserContext);
           </Form>
         )}
       </Formik>
+    </div>
     </div>
   );
 };

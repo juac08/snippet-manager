@@ -44,6 +44,7 @@ const CreateSnippet = ({ addSnippet,getSnippet,setAddSnippet,EditSnippet,setEdit
       }
   };
   return (
+   
     <div>
       {addSnippet && (
         <Formik

@@ -34,8 +34,10 @@ const RegistrationForm = () => {
     await getUser();
   };
   return (
+    <div className="login-wrapper">
     <div className="form-control">
-      <h1 style={{ margin: "1rem" }}>Register New Account</h1>
+      <h1 style={{textAlign: 'center',color:'whitesmoke'}}>Register New Account</h1>
+      <div className="underline"></div>
       <Formik
         initialValues={initialValues}
         validationSchema={validationSchema}
@@ -75,7 +77,7 @@ const RegistrationForm = () => {
                 Submit
               </Button>
 
-              <div className="form-control">
+              <div>
                 <p>
                   Already have a account?  
                   <Link to="/login">Login</Link>
@@ -86,6 +88,7 @@ const RegistrationForm = () => {
           </Form>
         )}
       </Formik>
+    </div>
     </div>
   );
 };
